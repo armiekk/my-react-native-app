@@ -1,0 +1,21 @@
+import React from 'react';
+import { createStackNavigator } from 'react-navigation';
+
+import ProfileScreen from '../screens/ProfileScreen';
+import FontAwesomeIcon from '../components/FontAwesomeIcon';
+
+const ProfileTabNavigator = createStackNavigator({
+    Profile: ProfileScreen
+});
+
+ProfileTabNavigator.navigationOptions = {
+    tabBarLabel: 'Profile',
+    tabBarIcon: ({ focused }) => (
+        <FontAwesomeIcon
+            focused={focused}
+            name={'user'}
+        />
+    ),
+}
+
+export default ProfileTabNavigator;
