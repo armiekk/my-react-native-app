@@ -15,12 +15,34 @@ const MainStyles = StyleSheet.create({
     marginBottom: 4
   },
   pageContainer: {
-    backgroundColor: '#F9F9F9',
-    marginTop: Platform === 'ios' ? 20 : 24,
-    flex: 1
+    paddingTop: 10,
+    paddingBottom: 10
   },
   postInput: {
     borderColor: '#FF6302'
+  },
+  eventHeaderTitle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  eventHeaderContainer: {
+    marginBottom: 4,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  eventCaption: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginTop: 5,
+    marginBottom: 5
+  },
+  divider: {
+    flex: 1,
+    borderStyle: 'solid',
+    borderWidth: 0.3,
+    borderColor: '#707070',
+    marginTop: 10,
+    marginBottom: 4
   }
 });
 

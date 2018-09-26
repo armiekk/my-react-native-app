@@ -6,8 +6,9 @@ class FontAwesomeIcon extends React.Component {
         return (
             <FontAwesome
                 name={this.props.name}
-                size={26}
+                size={this.props.size || 26}
                 style={{ marginBottom: -3 }}
+                color={this.props.color}
             />
         );
     }

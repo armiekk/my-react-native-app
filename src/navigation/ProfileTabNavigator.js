@@ -9,11 +9,12 @@ const ProfileTabNavigator = createStackNavigator({
 });
 
 ProfileTabNavigator.navigationOptions = {
-    tabBarLabel: 'Profile',
+    tabBarLabel: 'My Profiles',
     tabBarIcon: ({ focused }) => (
         <FontAwesomeIcon
             focused={focused}
             name={'user'}
+            color="white" 
         />
     ),
 }
