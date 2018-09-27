@@ -11,7 +11,7 @@ import MainStyles from '../constants/MainStyles';
 class DiscoveryScreen extends React.Component {
 
     static navigationOptions = {
-        header: props => <AppHeader {...props} title="Discover" />,
+        header: props => <AppHeader {...props} title="ค้นพบ" />,
     }
 
     render() {

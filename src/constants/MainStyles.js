@@ -1,9 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 
 const MainStyles = StyleSheet.create({
-  offsetStatusBar: {
-    paddingTop: 30
-  },
   postEditor: {
     backgroundColor: '#FF1C53',
     height: 55,
@@ -43,6 +40,14 @@ const MainStyles = StyleSheet.create({
     borderColor: '#707070',
     marginTop: 10,
     marginBottom: 4
+  },
+  statusBarOffset: {
+    marginTop: Platform.OS == "ios" ? 20 : 24,
+  },
+  headerTitle: {
+    fontSize: 26,
+    color: '#fff',
+    fontWeight: 'bold',
   }
 });
 

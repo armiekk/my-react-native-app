@@ -9,7 +9,7 @@ const NotificationTabNavigator = createStackNavigator({
 });
 
 NotificationTabNavigator.navigationOptions = {
-    tabBarLabel: 'Notifications',
+    tabBarLabel: 'การแจ้งเตือน',
     tabBarIcon: ({ focused }) => (
         <FontAwesomeIcon
             focused={focused}

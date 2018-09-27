@@ -9,7 +9,7 @@ const ProfileTabNavigator = createStackNavigator({
 });
 
 ProfileTabNavigator.navigationOptions = {
-    tabBarLabel: 'My Profiles',
+    tabBarLabel: 'ข้อมูลส่วนตัว',
     tabBarIcon: ({ focused }) => (
         <FontAwesomeIcon
             focused={focused}

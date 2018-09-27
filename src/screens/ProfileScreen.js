@@ -6,7 +6,7 @@ import AppHeader from '../components/AppHeader';
 export default class ProfileScreen extends React.Component {
 
     static navigationOptions = {
-        header: props => <AppHeader {...props} title="Profiles" />,
+        header: props => <AppHeader {...props} title="ข้อมูลส่วนตัว" />,
     }
 
     render() {

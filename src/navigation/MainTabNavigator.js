@@ -11,6 +11,7 @@ import DiscoveryTabNavigator from './DiscoveryTabNavigator';
 import ProfileTabNavigator from './ProfileTabNavigator';
 import NotificationTabNavigator from './NotificationTabNavigator';
 import EventTabNavigator from './EventTabNavigator';
+import EventDetailNavigator from './EventDetailNavigator';
 
 // screen
 import PostEditorScreen from '../screens/PostEditorScreen';
@@ -44,7 +45,8 @@ bottomTabNavigator.navigationOptions = {
 
 const MainTabNavigator = createStackNavigator({
   BottomNavigator: bottomTabNavigator,
-  PostEditor: PostEditorScreen
+  PostEditor: PostEditorScreen,
+  EventDetail: EventDetailNavigator
 });
 
 MainTabNavigator.navigationOptions = {

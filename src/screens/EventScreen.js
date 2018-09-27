@@ -12,18 +12,18 @@ import MainStyles from '../constants/MainStyles';
 class EventScreen extends React.Component {
 
     static navigationOptions = {
-        header: props => <AppHeader {...props} title="Events" />,
+        header: props => <AppHeader {...props} title="อีเวนต์" />,
     }
 
     render() {
         return (
             <ScrollView style={MainStyles.pageContainer}>
                 <EventHeader title="Feature events" />
-                <Event caption="ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)" />
+                <Event eventData={{ caption: 'ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)' }} />
                 <EventHeader title="Today events" />
-                <Event caption="ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)" />
+                <Event eventData={{ caption: 'ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)' }} />
                 <EventHeader title="Upcoming events" />
-                <Event caption="ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)" />
+                <Event eventData={{ caption: 'ไทยหนีเที่ยว : ตอนเที่ยวยกครัว (Fun Trip with Fam)' }} />
             </ScrollView>
         )
     }

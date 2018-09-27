@@ -9,7 +9,7 @@ const EventNavigator = createStackNavigator({
 });
 
 EventNavigator.navigationOptions = {
-    tabBarLabel: 'Events',
+    tabBarLabel: 'อีเวนต์',
     tabBarIcon: () => <FontAwesomeIcon name={'calendar'} color="white" />,
 }
 

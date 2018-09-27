@@ -9,7 +9,7 @@ const DiscoveryTabNavigator = createStackNavigator({
 });
 
 DiscoveryTabNavigator.navigationOptions = {
-    tabBarLabel: 'Discovery',
+    tabBarLabel: 'ค้นพบ',
     tabBarIcon: ({ focused }) => (
         <FontAwesomeIcon
             name={'search'}

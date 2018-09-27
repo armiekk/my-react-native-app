@@ -5,7 +5,7 @@ import AppHeader from '../components/AppHeader';
 export default class NotificationScreen extends React.Component {
 
     static navigationOptions = {
-        header: props => <AppHeader {...props} title="Notifications" />,
+        header: props => <AppHeader {...props} title="การแจ้งเตือน" />,
     }
 
     render() {
