@@ -1,10 +1,8 @@
 import React from 'react';
 import {
   createBottomTabNavigator,
-  createStackNavigator,
-
+  createStackNavigator
 } from 'react-navigation';
-
 
 // navigator
 import DiscoveryTabNavigator from './DiscoveryTabNavigator';
@@ -19,25 +17,27 @@ import PostEditorScreen from '../screens/PostEditorScreen';
 // component
 import TabBarNavigator from '../components/TabBarNavigator';
 
-
-
-const bottomTabNavigator = createBottomTabNavigator({
-  EventTabNavigator,
-  DiscoveryTabNavigator,
-  NotificationTabNavigator,
-  ProfileTabNavigator,
-}, {
+const bottomTabNavigator = createBottomTabNavigator(
+  {
+    EventTabNavigator,
+    DiscoveryTabNavigator,
+    NotificationTabNavigator,
+    ProfileTabNavigator
+  },
+  {
     tabBarOptions: {
       activeTintColor: '#fff',
       activeBackgroundColor: '#FF7500',
       labelStyle: {
         fontSize: 12,
         color: '#fff'
-      },
+      }
     },
-    tabBarComponent: props =>
-      <TabBarNavigator {...props} style={{ backgroundColor: '#ff8219' }} />,
-  });
+    tabBarComponent: props => (
+      <TabBarNavigator {...props} style={{ backgroundColor: '#ff8219' }} />
+    )
+  }
+);
 
 bottomTabNavigator.navigationOptions = {
   header: null
@@ -52,7 +52,7 @@ const MainTabNavigator = createStackNavigator({
 MainTabNavigator.navigationOptions = {
   header: null,
   mode: 'modal',
-  initialRouteName: 'BottomNavigator',
+  initialRouteName: 'BottomNavigator'
 };
 
 export default MainTabNavigator;
