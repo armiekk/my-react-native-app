@@ -22,7 +22,15 @@ class PostEditorScreen extends React.Component {
   };
 
   _pickImage = () => {
-    console.log(ImagePicker)
+    ImagePicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      if (!!image) {
+        this.setState({ image: image.path });
+      }
+    });
   };
 
   render() {
