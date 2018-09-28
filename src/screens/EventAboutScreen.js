@@ -5,7 +5,7 @@ import FontAwesomeIcon from '../components/FontAwesomeIcon';
 class EventAboutScreen extends React.Component {
   render() {
     return (
-      <ScrollView style={{ backgroundColor: '#fff', flex: 1, paddingTop: 10 }}>
+      <View style={{ flex: 1, backgroundColor: '#fff', }}>
         <View style={styles.section}>
           <View style={styles.sectionIcon}>
             <FontAwesomeIcon name="home" size={24} />
@@ -32,7 +32,7 @@ class EventAboutScreen extends React.Component {
           </View>
           <Text style={styles.description}>คำอธิบายกิจกรรม</Text>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }

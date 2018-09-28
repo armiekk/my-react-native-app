@@ -75,9 +75,9 @@ class Post extends React.Component {
           <View style={{ marginTop: 5, flexDirection: 'row' }}>
             {this._renderLikeCount()}
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 5 }}>
+          {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 5 }}>
             {this._renderPostAction()}
-          </View>
+          </View> */}
         </View>
       ) : <View></View>;
   }

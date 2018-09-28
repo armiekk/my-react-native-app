@@ -16,6 +16,11 @@ class AppHeader extends React.Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     {this.props.displayBackButton && <HeaderBackButton onPress={() => this.props.navigation.pop()}></HeaderBackButton>}
                     {this.props.children || <Text style={MainStyles.headerTitle}>{this.props.title || 'Untitle Screen'}</Text>}
+                    {!!this.props.renderRightBtn && (
+                        <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end', paddingRight: 10 }}>
+                            {this.props.renderRightBtn()}
+                        </View>
+                    )}
                 </View>
             </LinearGradient>
         )

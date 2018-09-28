@@ -13,6 +13,7 @@ import EventDetailNavigator from './EventDetailNavigator';
 
 // screen
 import PostEditorScreen from '../screens/PostEditorScreen';
+import EventDetailScreen from '../screens/EventDetailScreen';
 
 // component
 import TabBarNavigator from '../components/TabBarNavigator';
@@ -46,7 +47,7 @@ bottomTabNavigator.navigationOptions = {
 const MainTabNavigator = createStackNavigator({
   BottomNavigator: bottomTabNavigator,
   PostEditor: PostEditorScreen,
-  EventDetail: EventDetailNavigator
+  EventDetail: EventDetailScreen
 });
 
 MainTabNavigator.navigationOptions = {
