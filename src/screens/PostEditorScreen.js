@@ -1,36 +1,87 @@
 import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Image } from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
+import {
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Platform,
+  Image
+} from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
 
-
-// component 
+// component
 import AppHeader from '../components/AppHeader';
 import FontAwesomeIcon from '../components/FontAwesomeIcon';
-
+import PostEditorOption from '../components/PostEditorOption';
 
 class PostEditorScreen extends React.Component {
   static navigationOptions = {
-    header: props => <AppHeader {...props} renderRightBtn={() => (
-      <TouchableWithoutFeedback>
-        <View><Text>โพสต์</Text></View>
-      </TouchableWithoutFeedback>
-    )} displayBackButton={true} title="สร้างโพสต์" />
+    header: props => (
+      <AppHeader
+        {...props}
+        renderRightBtn={() => (
+          <TouchableWithoutFeedback>
+            <View>
+              <Text>โพสต์</Text>
+            </View>
+          </TouchableWithoutFeedback>
+        )}
+        displayBackButton={true}
+        title="สร้างโพสต์"
+      />
+    )
   };
 
   state = {
-    image: null,
+    image: null
   };
 
-  _pickImage = () => {
-    ImagePicker.openPicker({
-      width: 400,
-      height: 300,
-      cropping: true,
-    }).then(image => {
-      if (!!image) {
-        this.setState({ image: image.path });
-      }
+  _requestCameraPermission = async () => {
+    const { status } = await Permissions.getAsync(
+      Permissions.CAMERA,
+      Permissions.CAMERA_ROLL
+    );
+
+    if (!!status && status === 'granted') {
+      return true;
+    } else {
+      let { status } = await Permissions.askAsync(
+        Permissions.CAMERA,
+        Permissions.CAMERA_ROLL
+      );
+
+      return !!status && status === 'granted';
+    }
+  };
+
+  _pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3]
     });
+
+    if (!!result && !result.cancelled) {
+      this.setState({
+        image: result.uri
+      });
+    }
+  };
+
+  _openCamera = async () => {
+    const isGranted = await this._requestCameraPermission();
+    if (isGranted) {
+      const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [4, 3]
+      });
+
+      if (!!result && !result.cancelled) {
+        this.setState({
+          image: result.uri
+        });
+      }
+    }
   };
 
   render() {
@@ -38,31 +89,44 @@ class PostEditorScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <KeyboardAvoidingView
-          style={{ backgroundColor: '#fff', flex: 1, justifyContent: 'space-between' }}
+          style={{
+            backgroundColor: '#fff',
+            flex: 1,
+            justifyContent: 'space-between'
+          }}
           behavior="padding"
-          keyboardVerticalOffset={
-            Platform.select({
-              ios: () => 0,
-              android: () => 82
-            })()
-          }
+          keyboardVerticalOffset={Platform.select({
+            ios: () => 0,
+            android: () => 82
+          })()}
         >
           <View style={{ flex: 1 }}>
-            <TextInput style={{ fontSize: 28, padding: 16 }} placeholder="ระบุข้อความที่ต้องการ" placeholderTextColor="#dddddd" multiline={true} autoFocus={true} underlineColorAndroid="transparent"></TextInput>
-            {image &&
-              <Image source={{ uri: image }} style={{ resizeMode: 'cover', height: 180 }} />
-            }
+            <TextInput
+              style={{ fontSize: 28, padding: 16 }}
+              placeholder="ระบุข้อความที่ต้องการ"
+              placeholderTextColor="#dddddd"
+              multiline={true}
+              autoFocus={true}
+              underlineColorAndroid="transparent"
+            />
+            {image && (
+              <Image
+                source={{ uri: image }}
+                style={{ resizeMode: 'cover', height: 180 }}
+              />
+            )}
           </View>
           <View>
-            <TouchableWithoutFeedback onPress={() => this._pickImage()}>
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 25, borderColor: 'solid', borderTopWidth: 1, borderColor: '#dddddd' }}>
-                <View style={{
-                  flexDirection: 'row',
-                  width: 50,
-                }}><FontAwesomeIcon name="image" color="#000" /></View>
-                <Text style={{ flex: 1, }}>เพิ่มรูป</Text>
-              </View>
-            </TouchableWithoutFeedback>
+            <PostEditorOption
+              onPress={this._pickImage}
+              iconName="image"
+              title="เลือกรูป"
+            />
+            <PostEditorOption
+              onPress={this._openCamera}
+              iconName="camera"
+              title="ถ่ายภาพ"
+            />
           </View>
         </KeyboardAvoidingView>
       </View>
