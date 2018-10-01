@@ -27,7 +27,6 @@ class Image extends React.Component {
     }
 
     render() {
-        console.log(this.props.source);
         return <NativeImage {...this.props} style={{ height: this.state.dimensions.height, flex: 1 }} />
     }
 }
