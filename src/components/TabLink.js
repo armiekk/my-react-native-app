@@ -9,7 +9,7 @@ const TabLink = ({ children, to, activeOnlyWhenExact }) => (
                 flex: 1,
                 height: 40,
                 alignItems: 'center',
-                borderBottomWidth: 1,
+                borderBottomWidth: 2,
                 borderStyle: 'solid',
                 borderColor: match && match.isExact ? '#FF006D' : '#dddddd'
             }}
