@@ -2,7 +2,11 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-import { NativeRouter, Route } from 'react-router-native';
+import { NativeRouter } from 'react-router-native';
+import { Provider } from 'react-redux';
+
+// store
+import store from './store';
 
 export default class App extends React.Component {
   state = {
@@ -22,10 +26,11 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <NativeRouter>
-            {/* <Route exact path="/" component={AppNavigator} /> */}
-            <AppNavigator />
-          </NativeRouter>
+          <Provider store={store}>
+            <NativeRouter>
+              <AppNavigator />
+            </NativeRouter>
+          </Provider>
         </View>
       );
     }

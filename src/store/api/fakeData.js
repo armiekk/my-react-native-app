@@ -1,0 +1,15 @@
+export const postList = [
+    { postType: 'exibhition', like: { count: 20, } },
+    { postType: 'deal', like: { count: 36, hasLike: true } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+    { postType: 'deal', like: { count: 36, hasLike: true }, store_img: { imageUrl: 'https://scontent.fbkk5-3.fna.fbcdn.net/v/t31.0-8/16586956_1323896747680700_2967914501562263837_o.jpg?_nc_cat=110&oh=827cf4f2d288d55e28b102cf8e4e470e&oe=5C17C8D1' } },
+]
