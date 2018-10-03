@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hitevent.feed"
+    },
+    "android": {
+      "package": "com.hitevent.feed"
     }
   }
 }
