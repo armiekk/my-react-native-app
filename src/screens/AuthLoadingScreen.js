@@ -9,11 +9,14 @@ import * as actions from '../store/actions';
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
         this._detectAuthenticated();
     }
 
     _detectAuthenticated = async () => {
-        const token = await SecureStore.getItemAsync('tokenId');
+        const token = await SecureStore.getItemAsync('userToken');
         if (!!token) {
             this.props.fetchUserDetail();
             this.props.navigation.navigate('Main');

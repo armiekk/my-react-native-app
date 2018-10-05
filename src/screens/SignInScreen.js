@@ -9,12 +9,22 @@ class SignInScreen extends React.Component {
 
     state = {
         backButtonEnabled: false,
-        isLoaded: false,
-        isAuthenticated: false
+        isAuthenticated: false,
+        webViewUri: 'https://www.hitevent.com/auth/login?mobile'
     }
 
     componentDidMount() {
         this.setUpBackHandler();
+        this.onSignInPageLoadStart();
+        this.checkIfSignOut();
+    }
+
+    checkIfSignOut = () => {
+        const { navigation } = this.props;
+        const onSignOut = navigation.getParam('onSignOut', false);
+        if (onSignOut) {
+            this.setState({ webViewUri: 'https://www.hitevent.com/users/sign_out' });
+        }
     }
 
     setUpBackHandler = () => {
@@ -22,11 +32,19 @@ class SignInScreen extends React.Component {
     }
 
     onNavigationStateChange = (navState) => {
-        fetch('http://www.hitevent.com/auth/me').then(res => res.json()).then(console.log)
-        this.detectUserAuth();
         this.setState({
             backButtonEnabled: navState.canGoBack,
         });
+        this.setUserAuth();
+        const { url } = navState;
+        if (!!url && (
+            url === 'http://www.hitevent.com/' ||
+            url === 'https://www.hitevent.com/' ||
+            url === 'http://www.hitevent.com/#_=_'
+        )) {
+            this.webViewNode.injectJavaScript(`window.location.href = 'https://www.hitevent.com/auth/login?mobile'`);
+            return;
+        }
     };
 
     componentWillUnmount() {
@@ -40,92 +58,67 @@ class SignInScreen extends React.Component {
         }
     }
 
-    onWebviewLoaded = () => {
-        const script = `
-            window.postMessage(document.body.innerText);
-
-        // `;
-        this.webViewNode.injectJavaScript(script);
-    }
-
-    onMessage = (payload) => {
-        const res = payload.nativeEvent.data;
+    onSignInPageLoadStart = async () => {
         try {
-            const userObject = JSON.parse(res);
-            console.log(userObject.token);
-            this.setState({ isAuthenticated: true });
+            const userToken = await SecureStore.getItemAsync('userToken');
+            if (!!userToken) {
+                this.setState({ isAuthenticated: true });
+            }
         } catch (error) {
-
         }
     }
 
-    detectUserAuth = () => {
+    onMessage = async (payload) => {
+        const res = payload.nativeEvent.data;
+        try {
+            const userObject = JSON.parse(res);
+            if (!!userObject.token) {
+                this.setState({ isAuthenticated: true });
+                await SecureStore.setItemAsync('userToken', userObject.token);
+                this.props.navigation.navigate('Main');
+            }
+        } catch (error) {
+            // console.warn('cannot get user token', error);
+        }
+    }
+
+    setUserAuth = () => {
         const script = `
-            window.postMessage(document.body.innerText);
-        // `;
+                const userObject = JSON.parse(document.body.innerText);
+                if (!!userObject.token) {
+                    document.body.style.color = '#fff';
+                    window.postMessage(document.body.innerText);
+                }
+         `;
         this.webViewNode.injectJavaScript(script);
     }
 
     render() {
         return (
-            // <LinearGradient colors={['#FF7500', '#FF006D']} style={{ flex: 1 }}>
-            //     <KeyboardAvoidingView behavior="padding" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            //         <Image source={require('../assets/images/hitevent_logo.png')} />
-            //         <Text style={{ color: '#fff', fontSize: 30, fontWeight: 'bold', marginTop: 20 }}>Untitled Application</Text>
-            //         <ElevatedView elevation={3} style={[styles.textInputContainer, styles.emailContainer]}>
-            //             <TextInput underlineColorAndroid="transparent" style={styles.textInput} placeholder="อีเมลล์"></TextInput>
-            //         </ElevatedView>
-            //         <ElevatedView elevation={3} style={[styles.textInputContainer, styles.passwordContainer]}>
-            //             <TextInput textContentType="password" secureTextEntry={true} underlineColorAndroid="transparent" style={styles.textInput} placeholder="รหัสผ่าน"></TextInput>
-            //         </ElevatedView>
-            //     </KeyboardAvoidingView>
-            // </LinearGradient>
             <React.Fragment>
                 {
                     this.state.isAuthenticated
-                        ? <ActivityIndicator size="large" />
-                        : <WebView
-                            style={{ marginTop: 24 }}
-                            ref={node => this.webViewNode = node}
-                            source={{ uri: "https://www.hitevent.com/auth/login?mobile" }}
-                            mixedContentMode="always"
-                            javaScriptEnabled={true}
-                            // onLoadEnd={this.onWebviewLoaded}
-                            onMessage={this.onMessage}
-                            domStorageEnabled={true}
-
-                            onNavigationStateChange={this.onNavigationStateChange}
-                        />
+                        ? (
+                            <View style={{ justifyContent: 'center', flex: 1 }}>
+                                <ActivityIndicator size="large" />
+                            </View>
+                        ) : (
+                            <WebView
+                                style={{ marginTop: 24 }}
+                                ref={node => this.webViewNode = node}
+                                source={{ uri: this.state.webViewUri }}
+                                mixedContentMode={'always'}
+                                javaScriptEnabled={true}
+                                onMessage={this.onMessage}
+                                domStorageEnabled={true}
+                                onNavigationStateChange={this.onNavigationStateChange}
+                            />
+                        )
                 }
             </React.Fragment>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    textInputContainer: {
-        flexDirection: 'row',
-        marginLeft: 10,
-        marginRight: 10,
-        backgroundColor: '#fff'
-    },
-    emailContainer: {
-        marginTop: 20,
-        borderTopStartRadius: 4,
-        borderTopEndRadius: 4,
-        borderBottomWidth: 1.5,
-        borderColor: '#dddddd',
-        borderStyle: 'solid'
-    },
-    passwordContainer: {
-        borderBottomStartRadius: 4,
-        borderBottomEndRadius: 4
-    },
-    textInput: {
-        flex: 1,
-        fontSize: 20,
-        padding: 10
-    }
-});
 
 export default SignInScreen;

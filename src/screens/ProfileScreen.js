@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
+import { SecureStore } from 'expo';
 
 // component
 import AppHeader from '../components/AppHeader';
@@ -10,6 +11,11 @@ class ProfileScreen extends React.Component {
 
     static navigationOptions = {
         header: props => <AppHeader {...props} title="ข้อมูลส่วนตัว" />,
+    }
+
+    signOut = async () => {
+        this.props.navigation.navigate('SignIn', { onSignOut: true });
+        await SecureStore.deleteItemAsync('userToken');
     }
 
     render() {
@@ -30,7 +36,7 @@ class ProfileScreen extends React.Component {
                     </View>
                     <View style={{ marginTop: 20, borderBottomColor: '#dddddd', borderBottomWidth: 1, borderStyle: 'solid' }}>
                         <OptionItem title="แก้ไขข้อมูล" style={{ padding: 15 }} iconName="cog" />
-                        <OptionItem title="ออกจากระบบ" style={{ padding: 15 }} iconName="sign-out" />
+                        <OptionItem title="ออกจากระบบ" onPress={this.signOut} style={{ padding: 15 }} iconName="sign-out" />
                     </View>
                 </View>
             </ScrollView>
